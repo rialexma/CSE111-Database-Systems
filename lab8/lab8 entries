@@ -1,0 +1,144 @@
+Copying tables to other index and none index tables
+Customer index
+[01:04:33] Query finished in 0.008 second(s). Rows affected: 1500
+
+Customer no index
+[01:04:58] Query finished in 0.005 second(s). Rows affected: 1500
+
+Supplier index
+[01:06:50] Query finished in 0.004 second(s). Rows affected: 100
+
+Supplier no index
+[01:07:28] Query finished in 0.003 second(s). Rows affected: 100
+
+Orders index
+[01:08:13] Query finished in 0.042 second(s). Rows affected: 15000
+
+Orders no index
+[01:08:43] Query finished in 0.013 second(s). Rows affected: 15000
+
+Lineitem index
+[01:09:21] Query finished in 0.173 second(s). Rows affected: 60175
+
+Lineitem no index
+[01:09:54] Query finished in 0.057 second(s). Rows affected: 60175
+
+Making order priority index
+[01:14:32] Query finished in 0.014 second(s).
+
+Making lineitem return flag index
+[01:16:23] Query finished in 0.034 second(s).
+
+Making customer mktsegment index
+[01:18:14] Query finished in 0.004 second(s).
+
+Making Supplier acctbal index
+[17:32:25] Query finished in 0.004 second(s).
+
+Lab3 queries
+
+1.with index
+[19:23:54] Query finished in 0.002 second(s).
+
+W/o index
+[19:24:49] Query finished in 0.004 second(s).
+
+2.with index
+[19:26:12] Query finished in 0.003 second(s).
+
+W/o index
+[19:26:39] Query finished in 0.003 second(s).
+
+3. With index
+[19:28:02] Query finished in 0.008 second(s).
+
+W/o index
+[19:29:13] Query finished in 0.005 second(s).
+
+4.with index
+[19:29:40] Query finished in 0.023 second(s).
+
+W/o index
+[19:30:06] Query finished in 0.023 second(s).
+
+5. With index
+[19:31:08] Query finished in 0.019 second(s).
+
+W/o index
+[19:31:16] Query finished in 0.001 second(s).
+
+6. With index
+[19:31:58] Query finished in 0.002 second(s).
+
+W/o index
+[19:32:12] Query finished in 0.003 second(s).
+
+7. With index
+[19:32:30] Query finished in 0.060 second(s).
+
+W/o index
+[19:32:47] Query finished in 0.058 second(s).
+
+8. With index
+[19:34:12] Query finished in 0.003 second(s).
+
+W/o index
+[19:34:28] Query finished in 0.001 second(s).
+
+9. With index
+[19:36:22] Query finished in 0.001 second(s).
+
+W/o index
+[19:36:42] Query finished in 0.001 second(s).
+
+10. With index
+[19:37:00] Query finished in 0.019 second(s).
+
+W/o index
+[19:37:12] Query finished in 0.017 second(s).
+
+11.with index
+[19:37:33] Query finished in 0.105 second(s).
+
+W/o index
+[19:37:49] Query finished in 0.066 second(s).
+
+12. With index
+[19:38:01] Query finished in 0.012 second(s).
+
+W/o index
+[19:38:16] Query finished in 0.012 second(s).
+
+13. With index
+[19:38:44] Query finished in 0.003 second(s).
+
+W/o index
+[19:38:57] Query finished in 0.001 second(s).
+
+14. With index
+[19:39:16] Query finished in 0.015 second(s).
+
+W/o index
+[19:39:28] Query finished in 0.005 second(s).
+
+15. With index
+[19:39:42] Query finished in 0.062 second(s).
+
+W/o index
+[19:39:54] Query finished in 0.057 second(s).
+
+Update statements
+Adding 0.05 to l_discount in lineitem_index
+[21:10:28] Query finished in 0.307 second(s). Rows affected: 60175
+
+Adding 0.05 to l_discount in lineitem_noindex
+[21:11:46] Query finished in 0.174 second(s). Rows affected: 60175
+
+Adding 1000 to s_acctbal in supplier_index
+[21:21:57] Query finished in 0.003 second(s). Rows affected: 100
+
+Adding 1000 to s_acctbal in supplier_noindex
+[21:23:38] Query finished in 0.003 second(s). Rows affected: 100
+
+Comments on findings:
+While creating the tables it took a little longer than usual to import data before having an index which was strange to observe. While creating indexes I didn't know what to expect but it was fast at creating the indexes. While executing the queries from lab 3 for each newly created table, comparing it with others most of them with index took a bit more time than those tables without the indexes and there were some that completed approximately at the same time. While updating the tables it took longer to execute with the index than without the index. In the second update statement, both tables finished approximately at the same time which is strange. I would think that it would take longer to execute since there was an index

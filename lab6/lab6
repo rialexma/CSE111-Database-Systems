@@ -1,0 +1,75 @@
+--1 done
+SELECT strftime('%m', l_shipdate) AS month,
+       avg(l_quantity) 
+  FROM lineitem
+ WHERE l_shipdate LIKE '1996%'
+ GROUP BY month
+ ORDER BY month ASC;
+
+--2 done
+--finding the amount of customers with orders
+SELECT count(c_custkey) 
+  FROM 
+       (
+           SELECT  c1.c_custkey,
+                   count(o1.o_orderkey) AS amtOrder
+             FROM orders o1,
+                  customer c1
+            WHERE c1.c_custkey = o1.o_custkey AND 
+                  o_orderdate LIKE '1995-08%'
+                  group by c1.c_custkey
+                  having amtOrder < 3
+                  order by c1.c_custkey asc
+       );
+
+--3 done
+SELECT count(p_partkey) 
+  FROM (
+           SELECT p1.p_partkey,
+                  count(s1.s_suppkey) AS total
+             FROM nation,
+                  partsupp,
+                  supplier s1,
+                  part p1
+            WHERE n_nationkey = s1.s_nationkey AND 
+                  s1.s_suppkey = ps_suppkey AND 
+                  ps_partkey = p1.p_partkey AND 
+                  n_name = 'CANADA'
+            GROUP BY p1.p_partkey
+           HAVING total > 1
+            ORDER BY p1.p_partkey
+       );
+
+--4
+SELECT count(s_suppkey) 
+  FROM (
+           SELECT count(DISTINCT p1.p_partkey) AS total,
+                  s1.s_suppkey
+             FROM nation,
+                  partsupp,
+                  part p1,
+                  supplier s1
+            WHERE n_nationkey = s1.s_nationkey AND 
+                  s1.s_suppkey = ps_suppkey AND 
+                  ps_partkey = p1.p_partkey AND 
+                  n_name = 'CANADA'
+            GROUP BY s1.s_suppkey
+           HAVING total > 4
+            ORDER BY s1.s_suppkey ASC
+       );
+   
+--5
+SELECT count(DISTINCT s_suppkey) 
+  FROM (
+           SELECT  s1.s_suppkey,
+                   min(p1.p_retailprice)as minimum
+             FROM supplier s1,
+                  part p1,
+                  partsupp
+            WHERE s1.s_suppkey = ps_suppkey AND 
+                  ps_partkey = p1.p_partkey
+            GROUP BY s1.s_suppkey
+           HAVING p_retailprice = minimum 
+            ORDER BY s1.s_suppkey
+       );
+
